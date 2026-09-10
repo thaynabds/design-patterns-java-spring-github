@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: customer-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/customer_db}
+    username: ${DB_USERNAME:app}
+    password: ${DB_PASSWORD:app}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+server:
+  port: ${SERVER_PORT:8081}
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:change-this-secret-with-at-least-32-characters}
+  dev-user:
+    username: ${DEV_USERNAME:admin}
+    password: ${DEV_PASSWORD:admin123}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      addressService:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
