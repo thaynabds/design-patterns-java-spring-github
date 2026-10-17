@@ -1,6 +1,5 @@
 package br.com.thaynabdstec.customer.client;
 
-import br.com.thaynabdstec.customer.dto.AddressResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
